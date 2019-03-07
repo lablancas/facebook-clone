@@ -8,7 +8,7 @@ export const GlobalStyle = createGlobalStyle`
 
   html {
     line-height: 1;
-    font-size: 10px;
+    font-size: 16px;
     font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   }
   body{
@@ -25,6 +25,24 @@ export const GlobalStyle = createGlobalStyle`
   }
   a:hover{
     cursor: pointer;
+  }
+
+  @media screen and (min-width: 480px){
+    html{
+      font-size: 18px;
+    }
+  }
+
+  @media screen and (min-width: 768px){
+    html{
+      font-size: 20px;
+    }
+  }
+
+  @media screen and (min-width: 1080px){
+    html{
+      font-size: 22px;
+    }
   }
 
 `;
