@@ -1,3 +1,5 @@
 import React from 'react';
 
-export default () => <div>Error</div>;
+import Page from './ui/Page';
+
+export default () => <Page>Error</Page>;
