@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import style from './hello-world.css';
+import styled from 'styled-components';
 
-const HelloWorld = ({ title }) => (
-  <div className={style['hello-world']}>{title}</div>
-);
+const StyledHome = styled.div`
+  color: blue;
+`;
+
+const HelloWorld = ({ title }) => <StyledHome>{title}</StyledHome>;
 
 HelloWorld.propTypes = {
   title: PropTypes.string,
