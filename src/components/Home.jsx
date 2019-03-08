@@ -6,7 +6,9 @@ import Post from './ui/Post';
 const BACKEND_URL = 'http://localhost:7770';
 
 export default class Home extends Component {
-  state = {};
+  state = {
+    posts: [],
+  };
 
   componentDidMount() {
     let localLikes = localStorage.getItem('insta-clone-likes');
@@ -22,7 +24,7 @@ export default class Home extends Component {
     fetch(BACKEND_URL + '/posts')
       .then(res => res.json())
       .then((posts) => {
-        posts.map((post) => {
+        const formattedPosts = posts.map((post) => {
           let liked = false;
           let bookmarked = false;
           if (localLikes) {
@@ -35,21 +37,27 @@ export default class Home extends Component {
               bookmarked = true;
             }
           }
-          return { ...post, liked, bookmarked };
+          return {
+            ...post,
+            avatarUrl: post.avatar_url,
+            pictureUrl: post.picture_url,
+            text: post.content,
+            liked,
+            bookmarked,
+          };
         });
+
+        this.setState({ posts: formattedPosts });
       });
   }
 
   render() {
+    const { posts } = this.state;
     return (
       <Page>
-        <Post
-          id={1234}
-          text="Hello guys and welcome to my Instagram clone."
-          avatarUrl="hello"
-          pictureUrl="hello"
-          username="hello"
-          likes={0} />
+        {posts.map(post => (
+          <Post key={post.id} {...post} />
+        ))}
       </Page>
     );
   }

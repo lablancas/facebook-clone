@@ -11,25 +11,60 @@ class Post extends Component {
 
   componentWillMount() {
     const { likes, liked, bookmarked } = this.props;
-    this.setState({ likes, liked, bookmarked });
+    this.setState({ likes: liked ? likes + 1 : likes, liked, bookmarked });
   }
 
   handleLike = () => {
     const { likes, liked } = this.state;
+    const { id } = this.props;
+
+    let localLikes = localStorage.getItem('insta-clone-likes');
+    if (!localLikes) {
+      localLikes = [];
+    } else localLikes = JSON.parse(localLikes);
+
     if (!liked) {
       this.setState({
         liked: true,
         likes: likes + 1,
       });
+      localStorage.setItem(
+        'insta-clone-likes',
+        JSON.stringify([...localLikes, id]),
+      );
+    } else {
+      this.setState({
+        liked: false,
+        likes: likes - 1,
+      });
+      delete localLikes[localLikes.indexOf(id)];
+      localStorage.setItem('insta-clone-likes', JSON.stringify(localLikes));
     }
   };
 
   handleBookmark = () => {
     const { bookmarked } = this.state;
+    const { id } = this.props;
+
+    let localBooks = localStorage.getItem('insta-clone-books');
+    if (!localBooks) {
+      localBooks = [];
+    } else localBooks = JSON.parse(localBooks);
+
     if (!bookmarked) {
       this.setState({
         bookmarked: true,
       });
+      localStorage.setItem(
+        'insta-clone-books',
+        JSON.stringify([...localBooks, id]),
+      );
+    } else {
+      this.setState({
+        bookmarked: false,
+      });
+      delete localBooks[localBooks.indexOf(id)];
+      localStorage.setItem('insta-clone-books', JSON.stringify(localBooks));
     }
   };
 
@@ -82,7 +117,7 @@ Like
 }
 
 Post.propTypes = {
-  // id: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
   liked: PropTypes.bool,
   bookmarked: PropTypes.bool,
   text: PropTypes.string,
