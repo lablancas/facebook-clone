@@ -13,6 +13,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   body{
     margin: 0;
+    background-color: #FAFAFA;
   }
   * {
     -webkit-font-smoothing: antialiased;
@@ -27,22 +28,9 @@ export const GlobalStyle = createGlobalStyle`
     cursor: pointer;
   }
 
-  @media screen and (min-width: 480px){
-    html{
-      font-size: 18px;
-    }
-  }
+  
+  @media screen and (min-width: 640px){
 
-  @media screen and (min-width: 768px){
-    html{
-      font-size: 20px;
-    }
-  }
-
-  @media screen and (min-width: 1080px){
-    html{
-      font-size: 22px;
-    }
   }
 
 `;
