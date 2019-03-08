@@ -4,11 +4,12 @@ import StyledHeader from '../styles/StyledHeader';
 
 export default () => (
   <StyledHeader>
-    <div className="sect">
+    <a className="sect" href="/">
       <div className="logo" />
       <div className="line-hor" />
       <div className="title" />
-    </div>
+      Home
+    </a>
     <div className="sect">
       <a className="likes-link right-link" href="/mylikes">
         Likes

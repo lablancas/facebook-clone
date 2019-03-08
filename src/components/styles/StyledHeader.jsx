@@ -10,6 +10,8 @@ export default styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  color: rgba(0, 0, 0, 0);
+  font-size: 1px;
   .sect {
     display: flex;
     align-items: center;
