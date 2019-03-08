@@ -9,8 +9,8 @@ export default class Home extends Component {
   state = {};
 
   componentDidMount() {
-    let localLikes = localStorage.get('insta-clone-likes');
-    let localBooks = localStorage.get('insta-clone-books');
+    let localLikes = localStorage.getItem('insta-clone-likes');
+    let localBooks = localStorage.getItem('insta-clone-books');
 
     if (localLikes) {
       localLikes = JSON.parse(localLikes);
@@ -22,14 +22,21 @@ export default class Home extends Component {
     fetch(BACKEND_URL + '/posts')
       .then(res => res.json())
       .then((posts) => {
-        console.log(posts);
-        // posts.map(post => {
-        //   let liked = false
-        //   let
-        //   if(localLikes){
-        //     if(localLikes.includes(post.id))
-        //   }
-        // })
+        posts.map((post) => {
+          let liked = false;
+          let bookmarked = false;
+          if (localLikes) {
+            if (localLikes.includes(post.id)) {
+              liked = true;
+            }
+          }
+          if (localBooks) {
+            if (localBooks.includes(post.id)) {
+              bookmarked = true;
+            }
+          }
+          return { ...post, liked, bookmarked };
+        });
       });
   }
 

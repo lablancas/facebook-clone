@@ -10,8 +10,8 @@ class Post extends Component {
   };
 
   componentWillMount() {
-    const { likes } = this.props;
-    this.setState({ likes });
+    const { likes, liked, bookmarked } = this.props;
+    this.setState({ likes, liked, bookmarked });
   }
 
   handleLike = () => {
@@ -32,6 +32,8 @@ class Post extends Component {
       });
     }
   };
+
+  handleNothing = () => {};
 
   render() {
     const {
@@ -54,9 +56,17 @@ class Post extends Component {
           className="post-picture"
           style={{ backgroundImage: `url(${pictureUrl})` }} />
         <div className="post-links">
-          <div onDoubleClick={this.handleLike} className="like-button" />
           <div
-            onDoubleClick={this.handleBookmark}
+            tabIndex="0"
+            role="button"
+            onKeyPress={this.handleNothing}
+            onClick={this.handleLike}
+            className="like-button" />
+          <div
+            tabIndex="0"
+            role="button"
+            onKeyPress={this.handleNothing}
+            onClick={this.handleBookmark}
             className="bookmark-button" />
         </div>
         <div className="post-likes">
@@ -73,6 +83,8 @@ Like
 
 Post.propTypes = {
   // id: PropTypes.number.isRequired,
+  liked: PropTypes.bool,
+  bookmarked: PropTypes.bool,
   text: PropTypes.string,
   avatarUrl: PropTypes.string,
   pictureUrl: PropTypes.string.isRequired,
