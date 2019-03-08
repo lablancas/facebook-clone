@@ -10,24 +10,7 @@ module.exports = {
     chunkFilename: '[name].[chunkhash].js',
   },
   module: {
-    rules: [
-      {
-        test: /\.(css|scss)$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: false,
-              modules: true,
-              camelCase: true,
-              localIdentName: '[local]___[hash:base64:5]',
-            },
-          },
-          'sass-loader',
-        ],
-      },
-    ],
+    rules: [],
   },
   plugins: [
     new CleanWebpackPlugin([commonPaths.outputPath.split('/').pop()], {
