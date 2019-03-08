@@ -1,1 +1,1 @@
-export const BACKEND_URL = 'http://localhost:7770';
+export const BACKEND_URL = 'https://insta-clone-backend-scott.herokuapp.com';
