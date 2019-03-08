@@ -22,7 +22,8 @@ export default styled.div`
     align-items: center;
   }
   .post-avatar {
-    background-color: blue;
+    background-color: lightgrey;
+    background-size: cover;
     border-radius: 50%;
     width: 25px;
     height: 25px;

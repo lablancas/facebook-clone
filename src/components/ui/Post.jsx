@@ -37,7 +37,7 @@ class Post extends Component {
         liked: false,
         likes: likes - 1,
       });
-      delete localLikes[localLikes.indexOf(id)];
+      localLikes.splice(localLikes.indexOf(id), 1);
       localStorage.setItem('insta-clone-likes', JSON.stringify(localLikes));
     }
   };
@@ -63,7 +63,7 @@ class Post extends Component {
       this.setState({
         bookmarked: false,
       });
-      delete localBooks[localBooks.indexOf(id)];
+      localBooks.splice(localBooks.indexOf(id), 1);
       localStorage.setItem('insta-clone-books', JSON.stringify(localBooks));
     }
   };

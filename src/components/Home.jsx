@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Page from './ui/Page';
 import Post from './ui/Post';
 
-const BACKEND_URL = 'http://localhost:7770';
+import { BACKEND_URL } from '../config';
 
 export default class Home extends Component {
   state = {
